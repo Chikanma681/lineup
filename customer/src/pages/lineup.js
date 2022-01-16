@@ -1,15 +1,25 @@
 import logo from "../assets/logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Modal from "../components/modal";
 
 const LineUp = ({ id, storeName, storeDescription, estWait, setLinedUp, firstName }) => {
 	const hours = Math.floor(estWait / 60);
 	const minutes = estWait - 60 * hours;
 
-	const [lineNumber, setLineNumber] = useState(0);
+	// Line properties
+	const [lineNumber, setLineNumber] = useState(60);
+	const [lineLength, setLineLength] = useState(100);
+
+	const [pushbackNumber, setPushbackNumber] = useState(0);
 
 	// Modal control
 	const [pushBackModalVisible, setPushBackModalVisible] = useState(false);
 	const [leaveModalVisible, setLeaveModalVisible] = useState(false);
+
+	const pushback = () => {};
+	const leaveLine = () => {
+		window.location.reload(false);
+	};
 
 	return (
 		<div className="lineup-page line-page">
@@ -59,6 +69,85 @@ const LineUp = ({ id, storeName, storeDescription, estWait, setLinedUp, firstNam
 					</section>
 				</div>
 			</main>
+
+			<Modal
+				title="Push back your spot"
+				setOpen={setPushBackModalVisible}
+				open={pushBackModalVisible}
+			>
+				<p className="push-back-description">
+					Not quite ready? No worries! Push back your spot to give you more time until you enter the
+					store.
+				</p>
+
+				<label htmlFor="push-back-number" className="push-back-label">
+					Push back{" "}
+					<input
+						type="number"
+						id="push-back-number"
+						className="push-back-number"
+						min="0"
+						max={`${lineLength - lineNumber}`}
+						step="1"
+						value={pushbackNumber}
+						onChange={(e) => {
+							setPushbackNumber(e.target.valueAsNumber);
+						}}
+					/>
+					spots.
+				</label>
+
+				<p className="push-back-description">
+					If you click on confirm, you will now be in position number {lineNumber + pushbackNumber}.
+				</p>
+
+				<div className="modal-buttons">
+					<button
+						className="transparent-blue"
+						onClick={() => {
+							setPushBackModalVisible(false);
+						}}
+					>
+						Cancel
+					</button>
+
+					<button
+						className="solid-blue"
+						onClick={() => {
+							pushback();
+						}}
+					>
+						Confirm
+					</button>
+				</div>
+			</Modal>
+
+			<Modal title="Leave line" setOpen={setLeaveModalVisible} open={leaveModalVisible}>
+				<p className="push-back-description">
+					Are you sure you would like to leave the line? You will give up your spot and will have to
+					rejoin from the back.
+				</p>
+
+				<div className="modal-buttons">
+					<button
+						className="transparent-blue"
+						onClick={() => {
+							setLeaveModalVisible(false);
+						}}
+					>
+						Cancel
+					</button>
+
+					<button
+						className="solid-blue"
+						onClick={() => {
+							leaveLine();
+						}}
+					>
+						Confirm
+					</button>
+				</div>
+			</Modal>
 		</div>
 	);
 };

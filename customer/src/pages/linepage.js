@@ -9,7 +9,7 @@ const Line = () => {
 	const { id } = useParams();
 
 	// Page State
-	const [linedUp, setLinedUp] = useState(true);
+	const [linedUp, setLinedUp] = useState(false);
 
 	// Store Properties
 	const [storeName, setStoreName] = useState("Nike");
