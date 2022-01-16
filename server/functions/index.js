@@ -1,3 +1,5 @@
+const functions = require("firebase-functions");
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -127,3 +129,5 @@ app.post("/api/delete_user", async (req, res) => {
 app.listen(1337, () => {
 	console.log("Server started on 1337");
 });
+
+exports.app = functions.https.onRequest(app);
