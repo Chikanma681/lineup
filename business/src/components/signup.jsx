@@ -9,36 +9,45 @@ class SignupForm extends Component {
     name: "",
     description: "",
     address: "",
+    capacity: "",
   };
 
   handleInputChange = (e) => {
+    // console.log(e.target)
+    // console.log(e.target.value)
+
     this.setState({
       [e.target.name]: e.target.value,
     });
+    // console.log(this.state.password,"STATE")
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    
-    const url = `https://lineupapp.firebaseapp.com/api/store/${id}`
+
+    const url = `https://lineupapp.firebaseapp.com/api/register`;
 
     const body = {
-      name:this.state.name,
+      name: this.state.name,
       email: this.state.email,
-      password:this.state.password,
-      description:this.state.description,
-      address:this.state.address
-    }
+      password: this.state.password,
+      description: this.state.description,
+      address: this.state.address,
+      capacity: this.state.capacity,
+    };
 
-    axios.post(url,body)
-      .then((res)=>{
-      console.log(res)
-      .catch((err)=>{
-        console.log(err)
-      })
-    })
+    axios.post(url, body).then((res) => {
+      console.log(res).catch((err) => {
+        console.log(err);
+      });
+    });
   };
-
+  
+  componentDidMount() {
+    console.log(this.state.name);
+    console.log(this.state.email);
+    console.log(this.state.password);
+  }
 
   render() {
     return (
@@ -93,12 +102,20 @@ class SignupForm extends Component {
             placeholder="Store Address"
           />
         </FormGroup>
+        <FormGroup>
+          <Label for="capacity">Store Capacity</Label>
+          <Input
+            type="capacity"
+            name="capacity"
+            id="capacity"
+            onChange={this.handleInputChange}
+            placeholder="Store Capacity"
+          />
+        </FormGroup>
         <Button onSubmit={this.handleInputChange}>Submit</Button>
       </Form>
     );
   }
-
-};
-
+}
 
 export default SignupForm;

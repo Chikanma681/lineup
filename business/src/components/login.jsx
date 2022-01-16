@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-
+import axios from "axios";
 class Login extends Component {
   state = {};
 
@@ -12,23 +12,23 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    
-    const url = `https://lineupapp.firebaseapp.com/api/store/${id}`
 
-    const body = {
-      email: this.state.email,
-      password:this.state.password,
-    }
+    // const url = `https://lineupapp.firebaseapp.com/api/store/`;
 
-    axios
-      .post(url,body)
-      .then((res)=>{
-          console.log(res)
-      .catch((err)=>{
-          console.log(err)
-      })
-    })
+    // const body = {
+    //   email: this.state.email,
+    //   password: this.state.password,
+    // };
+
+    // axios.post(url, body).then((res) => {
+    //   console.log(res).catch((err) => {
+    //     console.log(err);
+    //   });
+    // });
   };
+
+
+
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
