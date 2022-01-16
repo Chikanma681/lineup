@@ -1,0 +1,7 @@
+export const actionTypes = {
+    GET_EMAIL: "GET_EMAIL",
+    GET_PASSWORD: "GET_PASSWORD",
+    GET_NAME:"GET_NAME",
+    GET_DESCRIPTION: "GET_DESCRIPTION",
+    GET_ADDRESS:"GET_ADDRESS",
+};
