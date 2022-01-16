@@ -9,22 +9,41 @@ const initialState = {
   address: "",
 };
 
-const { GET_ITEMS } = actionTypes;
+const { GET_EMAIL, GET_PASSWORD, GET_DESCRIPTION, GET_ADDRESS, GET_NAME } =
+  actionTypes;
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ITEMS:
+    case GET_EMAIL:
       return {
         ...state,
-        email: "",
-        password: "",
-        name: "",
-        description: "",
-        address: "",
+        email: action.payload,
+      };
+    case GET_PASSWORD:
+      return {
+        ...state,
+        password: action.payload,
+      };
+    case GET_NAME:
+      return {
+        ...state,
+        name: action.payload,
+      };
+    case GET_DESCRIPTION:
+      return {
+        ...state,
+        description: action.payload,
+      };
+    case GET_ADDRESS:
+      return {
+        ...state,
+        address: action.payload,
       };
   }
 };
 
-const reducers = combineReducers({});
+const reducers = combineReducers({
+  form: formReducer,
+});
 
 export default reducers;
