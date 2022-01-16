@@ -1,8 +1,10 @@
+const functions = require("firebase-functions");
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const User = require("./functions/models/user.model");
+const User = require("./models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
@@ -14,7 +16,6 @@ mongoose.connect(
 );
 
 app.use(bodyParser.json());
-app.use(cors);
 
 app.post("/api/register", async (req, res) => {
 	try {
@@ -128,3 +129,5 @@ app.post("/api/delete_user", async (req, res) => {
 app.listen(1337, () => {
 	console.log("Server started on 1337");
 });
+
+exports.app = functions.https.onRequest(app);
