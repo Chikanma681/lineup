@@ -17,20 +17,23 @@ app.post('/api/register', async (req, res) => {
 		await User.create({
 			email: req.body.email,
 			password: newPassword,
+			name: req.body.storeName,
+			description: req.body.description,
+			address: req.body.address
 		})
 		res.json({ status: 'ok' })
 	} catch (err) {
-		res.json({ status: 'error', error: 'Duplicate email' })
+		res.json({ status: 'error', error: 'Email or Name Already Exists' })
 	}
 })
 
 app.post('/api/login', async (req, res) => {
 	const user = await User.findOne({
-		email: req.body.email,
+		name: req.body.name
 	})
-
+	
 	if (!user) {
-		return { status: 'error', error: 'Invalid login' }
+		return { status: 'error', error: 'Invalid Store Name' }
 	}
 
 	const isPasswordValid = await bcrypt.compare(
@@ -41,8 +44,7 @@ app.post('/api/login', async (req, res) => {
 	if (isPasswordValid) {
 		const token = jwt.sign(
 			{
-				name: user.name,
-				email: user.email,
+				name: user.name
 			},
 			'secret_key_123'
 		)
