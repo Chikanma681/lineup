@@ -24,6 +24,20 @@ const Line = () => {
 	const [firstName, setFirstName] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 
+	// Get store properties
+	useEffect(() => {
+		const url = `https://lineupapp.firebaseapp.com/api/store/${id}`;
+
+		axios
+			.get(url, config)
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}, []);
+
 	if (linedUp)
 		return (
 			<LineUp
