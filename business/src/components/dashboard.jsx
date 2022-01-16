@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
-
-const DashBoard = () =>{
-
+class Dashboard extends Component {
+  render() {
+    return (<React.Fragment>
+        
+    </React.Fragment>);
+  }
 }
 
-export default DashBoard;
+export default Dashboard;

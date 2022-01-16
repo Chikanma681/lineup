@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { connect } from "react-redux";
+
 
 class SignupForm extends Component {
   state = {
@@ -19,7 +19,9 @@ class SignupForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    
   };
+
 
   render() {
     return (
@@ -78,12 +80,8 @@ class SignupForm extends Component {
       </Form>
     );
   }
-}
 
-const mapStateToProps = (state) => {
-  return {
-    item: state.item,
-  };
 };
 
-export default connect(mapStateToProps, { getItems, addItem })(SignupForm);
+
+export default SignupForm;
