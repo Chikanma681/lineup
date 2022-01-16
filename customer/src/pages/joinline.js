@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import { useState } from "react";
 
 const JoinLine = ({
 	id,
@@ -14,10 +15,27 @@ const JoinLine = ({
 	const hours = Math.floor(estWait / 60);
 	const minutes = estWait - 60 * hours;
 
+	const [textsEnabled, setTextsEnabled] = useState(false);
+
 	const handleSubmit = (e) => {
 		e.preventDefault(); // prevent default action
 
-		// do form shenanigans here
+		const url = `https://lineupapp.firebaseapp.com/api/store/${id}`;
+
+		const body = {
+			name: firstName,
+			phone_number: phoneNumber,
+			text_messages_enabled: textsEnabled,
+		};
+
+		axios
+			.post(url, body)
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 
 		setLinedUp(true); // redirect to line page
 	};
@@ -78,7 +96,15 @@ const JoinLine = ({
 
 							{/* Receive test messages? */}
 							<label className="checkbox-label" htmlFor="receive-texts">
-								<input type="checkbox" id="receive-texts" />I would like to receive text updates.
+								<input
+									type="checkbox"
+									id="receive-texts"
+									checked={textsEnabled}
+									onChange={(e) => {
+										setTextsEnabled(this.target.checked);
+									}}
+								/>
+								I would like to receive text updates.
 							</label>
 
 							<button type="submit" className="solid">
