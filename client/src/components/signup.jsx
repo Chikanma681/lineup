@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 class SignupForm extends Component {
-  state ={
-    email:"",
-    password:"",
-    name:"",
-    description:"",
-    address:""
-  }
 
   handleInputChange = (e) => {
-    
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+  }
+
   render() {
     return (
       <Form>
