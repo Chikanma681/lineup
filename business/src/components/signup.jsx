@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-
+import axios from "axios";
 
 class SignupForm extends Component {
   state = {
@@ -20,6 +20,23 @@ class SignupForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     
+    const url = `https://lineupapp.firebaseapp.com/api/store/${id}`
+
+    const body = {
+      name:this.state.name,
+      email: this.state.email,
+      password:this.state.password,
+      description:this.state.description,
+      address:this.state.address
+    }
+
+    axios.post(url,body)
+      .then((res)=>{
+      console.log(res)
+      .catch((err)=>{
+        console.log(err)
+      })
+    })
   };
 
 
