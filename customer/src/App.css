@@ -1,7 +1,320 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+/* Custom properties */
+:root {
+	--clr-primary: #276e7d;
+	--clr-light: rgba(255, 255, 255, 0.9);
+}
+
+/* Presets */
 *,
 *::before,
 *::after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+	color: var(--clr-light);
+}
+
+button {
+	display: block;
+	border-radius: 1.5rem;
+	padding: 0.5rem 1.5rem;
+	margin: 1rem auto;
+
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 1.125rem;
+
+	transition: background ease-in-out 200ms;
+}
+
+/* Common Components */
+.divider {
+	width: 90%;
+	height: 2px;
+	background-color: var(--clr-light);
+	margin: 2rem auto;
+}
+
+.required::after {
+	content: "*";
+	color: red;
+	margin-left: 0.25rem;
+}
+
+button.solid {
+	background: var(--clr-light);
+	color: var(--clr-primary);
+	border: none;
+}
+
+button.solid:hover,
+button.solid:focus {
+	background: rgba(255, 255, 255, 0.75);
+	cursor: pointer;
+}
+
+button.solid-blue {
+	background: var(--clr-primary);
+	color: var(--clr-light);
+	border: none;
+}
+
+button.solid-blue:hover,
+button.solid-blue:focus {
+	background: rgba(39, 111, 125, 0.8);
+	cursor: pointer;
+}
+
+button.transparent {
+	background: none;
+	color: var(--clr-light);
+	border: 2px solid var(--clr-light);
+}
+
+button.transparent:hover,
+button.transparent:focus {
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+}
+
+button.transparent-blue {
+	background: none;
+	color: var(--clr-primary);
+	border: 2px solid var(--clr-primary);
+}
+
+button.transparent-blue:hover,
+button.transparent-blue:focus {
+	background: rgba(39, 111, 125, 0.1);
+	cursor: pointer;
+}
+
+/* Source for checkbox: https://moderncss.dev/pure-css-custom-checkbox-style/ */
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: var(--clr-primary);
+	margin: 0 0.5rem 0 0;
+
+	font: inherit;
+	color: var(--clr-primary);
+	width: 1.15em;
+	height: 1.15em;
+	border: 0.15em solid var(--clr-light);
+	border-radius: 0.25em;
+	transform: translateY(-0.075em);
+
+	display: grid;
+	place-content: center;
+}
+
+input[type="checkbox"]::before {
+	content: "";
+	width: 0.65em;
+	height: 0.65em;
+	transform: scale(0);
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--clr-light);
+	transform-origin: bottom left;
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+	transform: scale(1);
+}
+
+/* Common Styling */
+.line-page {
+	display: flex;
+	flex-direction: column;
+}
+
+.line-page {
+	background: var(--clr-primary);
+	min-height: 100vh;
+	padding: 2rem;
+}
+
+.line-page main {
+	display: grid;
+	place-items: center;
+	flex: 1;
+}
+
+.line-page .main-container {
+	width: 100%;
+	max-width: 40rem;
+}
+
+.line-page .store-info > * {
+	text-align: center;
+}
+
+.line-page .store-info .store-name {
+	font-weight: 600;
+	font-size: 2rem;
+}
+
+.line-page .store-info p {
+	font-size: 0.875rem;
+	font-weight: 300;
+}
+
+.line-page .store-info .store-description {
+	font-weight: 500;
+}
+
+.line-page .est-wait {
+	text-align: center;
+	font-size: 1.125rem;
+	font-weight: 200;
+}
+
+.line-page .est-wait .label {
+	font-weight: 500;
+}
+
+/* Join Line Page */
+.join-page .join-form label {
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+.join-page .join-form input[type="text"],
+.join-page .join-form input[type="tel"] {
+	background: none;
+	border: 2px solid var(--clr-light);
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+	display: block;
+	width: 100%;
+	font-size: 1rem;
+	padding: 0.5rem 0.5rem;
+	font-weight: 300;
+}
+
+input::placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.join-page .join-form .checkbox-label {
+	display: grid;
+	grid-template-columns: 1em auto;
+	gap: 0.5em;
+	align-items: center;
+	margin-bottom: 1rem;
+	font-weight: 300;
+}
+
+/* Line Up Page */
+.lineup-page .welcome-msg h4 {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.line-page .line-info {
+	width: 16rem;
+	height: 16rem;
+	border-radius: 50%;
+	margin: 1rem auto;
+
+	background: var(--clr-light);
+	color: var(--clr-primary);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.line-page .line-info .label {
+	color: inherit;
+	font-weight: 600;
+	font-size: 1.125rem;
+}
+
+.line-page .line-info .number {
+	color: inherit;
+	font-family: "Roboto", sans-serif;
+	font-weight: 600;
+	line-height: 0.9;
+	font-size: 8rem;
+	font-feature-settings: "pnum" on, "onum" on;
+}
+
+.lineup-page .buttons button {
+	width: 100%;
+}
+
+.lineup-page .push-back-description {
+	color: var(--clr-primary);
+}
+
+.lineup-page .push-back-label {
+	color: var(--clr-primary);
+	font-size: 1.125rem;
+	font-weight: 500;
+	display: block;
+	width: fit-content;
+	margin: 1rem auto;
+}
+
+.lineup-page .push-back-number {
+	background: none;
+	border: none;
+	font-size: 1.125rem;
+	font-weight: 500;
+	margin-left: 0.5rem;
+	padding-left: 0.5rem;
+
+	color: var(--clr-primary);
+}
+
+.lineup-page .modal-buttons {
+	display: flex;
+}
+
+/* Modal styles */
+.modal-component {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: grayscale(100%) blur(1rem);
+	display: flex;
+	z-index: 10;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-component .modal-container {
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+	border-radius: 1rem;
+	background: var(--clr-light);
+	padding: 1rem;
+
+	max-width: 40rem;
+}
+
+.modal-component .modal-container .title-container {
+	display: flex;
+	align-items: top;
+}
+
+.modal-component .modal-container .title-container .title {
+	color: var(--clr-primary);
+	flex: 1;
+	margin: 0.5rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.modal-component .modal-divider {
+	background: var(--clr-primary);
+	margin: 0 0 1rem 0;
+	width: 100%;
 }

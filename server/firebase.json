@@ -1,0 +1,12 @@
+{
+	"hosting": {
+		"site": "lineupapp",
+		"public": "public",
+		"rewrites": [
+			{
+				"source": "**",
+				"function": "app"
+			}
+		]
+	}
+}
