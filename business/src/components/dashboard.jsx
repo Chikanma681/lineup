@@ -2,9 +2,11 @@ import React, { Component } from "react";
 
 class Dashboard extends Component {
   render() {
-    return (<React.Fragment>
-        
-    </React.Fragment>);
+    return (
+        <div>
+            <p>Login or Signup</p>
+        </div>
+);
   }
 }
 

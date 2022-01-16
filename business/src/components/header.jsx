@@ -1,10 +1,10 @@
 import React from "react";
 
 
-const DashBoard = () =>{
+const Header= () =>{
     <div>
         <h1>Lineup</h1>
     </div>
 }
 
-export default DashBoard;
+export default Header;
