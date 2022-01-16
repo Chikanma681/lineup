@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 class Login extends Component {
-  state = {};
-
+  state={
+    email: "",
+    password: "",
+  };
+  
   handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -13,18 +16,18 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    // const url = `https://lineupapp.firebaseapp.com/api/store/`;
+    const url = `https://lineupapp.firebaseapp.com/api/login/`;
 
-    // const body = {
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // };
+    const body = {
+      name: this.state.email,
+      password: this.state.password,
+    };
 
-    // axios.post(url, body).then((res) => {
-    //   console.log(res).catch((err) => {
-    //     console.log(err);
-    //   });
-    // });
+    axios.post(url, body).then((res) => {
+      console.log(res).catch((err) => {
+        console.log(err);
+      });
+    });
   };
 
 
