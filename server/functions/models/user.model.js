@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const User = new mongoose.Schema(
 	{
+		_id: {type: Number, required: true},
 		store_name: { type: String, required: true, unique: true },
 		static: {
 			email: { type: String, required: true, unique: true },
@@ -18,6 +19,7 @@ const User = new mongoose.Schema(
 		dynamic: {
 			wait_time_avg: { type: Number, default: 5 },
 			is_line_open: { type: Boolean },
+			in_store: {type: Number, default: 0},
 			queue: [],
 		},
 	},
