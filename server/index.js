@@ -120,6 +120,26 @@ app.post('/api/delete_user', async (req, res) => {
 	}
 })
 
+app.post('/api/delete_user', async (req, res) => {
+	try {
+		if (req.body.name){
+			await User.updateOne({ store_name: req.body.store_name}, {
+				$pull: {
+					"dynamic.queue": {"name": req.body.name, "phone_number": req.body.phone_number}
+				}
+			}).clone()
+		}
+		else {
+			await User.updateOne({store_name: req.body.store_name}, {
+				$pop: { "dynamic.queue": -1}
+			}).clone()
+		}
+		res.json({'status': 'ok'})
+	} catch (err) {
+		res.json({status: 'error', error: 'Error Deleting DB'})
+	}
+})
+
 app.listen(1337, () => {
 	console.log('Server started on 1337')
 })
