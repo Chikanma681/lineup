@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
-const BusinessPage = () => {
+const Login = () => {
   return (
     <Form>
       <FormGroup>
@@ -22,4 +22,4 @@ const BusinessPage = () => {
   );
 };
 
-export default BusinessPage;
+export default Login;
