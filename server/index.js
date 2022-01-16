@@ -5,8 +5,10 @@ const mongoose = require('mongoose')
 const User = require('./models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const dotenv = require('dotenv')
+dotenv.config()
 
-mongoose.connect('mongodb+srv://LukeWismer:Luke4791@lineup.nddnc.mongodb.net/lineup?retryWrites=true&w=majority')
+mongoose.connect(`mongodb+srv://LukeWismer:${process.env.MONGO_PWD}@lineup.nddnc.mongodb.net/lineup?retryWrites=true&w=majority`)
 
 app.post('/api/register', async (req, res) => {
 	console.log(req.body)
